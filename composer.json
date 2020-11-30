@@ -1,0 +1,29 @@
+{
+    "name": "meraki/email",
+    "description": "A simple, easy to use, elegant emailing library for PHP 7.4+.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nathan Bishop",
+            "email": "nbish11@hotmail.com"
+        }
+    ],
+    "require-dev": {
+        "meraki/test-suite": "^0.1",
+        "meraki/abnf": "^0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Meraki\\Email\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Meraki\\Email\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit tests/"
+    }
+}
