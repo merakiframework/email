@@ -15,7 +15,7 @@ final class DisplayName
 	 *
 	 * atom  = 1*atext
 	 */
-	const ATOM_REGEX = "/^[a-zA-Z0-9!#$%&'\*\+\-\/\=\?\^_`{|}~]+$/";
+	const ATOM_REGEX = "/^[a-zA-Z0-9!#$%&'\*\+\-\/\=\?\^_`{|}~]+(?:\.[a-zA-Z0-9!#$%&'\*\+\-\/\=\?\^_`{|}~]+)*$/";
 
 	/**
 	 * FWS				=	([*WSP CRLF] 1*WSP)

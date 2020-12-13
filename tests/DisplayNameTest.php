@@ -61,13 +61,16 @@ final class DisplayNameTest extends TestCase
 		$this->assertFalse($displayName1->equals($displayName2));
 	}
 
+	/**
+	 * @test
+	 */
 	public function phrase_is_not_quoted_if_valid_atom_text(): void
 	{
 		$expectedPhrase = 'Jane.Doe';
 		$displayName = new DisplayName($expectedPhrase);
 
 		$this->assertEquals($expectedPhrase, $displayName->getPhrase());
-		$this->assertEmpty($expectedPhrase, (string) $displayName);
+		$this->assertEquals($expectedPhrase, (string) $displayName);
 	}
 
 	/**
