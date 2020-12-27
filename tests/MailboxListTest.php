@@ -8,7 +8,6 @@ use Meraki\Email\Mailbox;
 use Meraki\TestSuite\TestCase;
 use Countable;
 use IteratorAggregate;
-use RangeException;
 
 final class MailboxListTest extends TestCase
 {
