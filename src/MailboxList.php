@@ -12,7 +12,7 @@ use ArrayIterator;
 use RangeException;
 
 // A "group-list" is also a "mailbox-list"
-final class MailboxList implements Countable, IteratorAggregate
+class MailboxList implements Countable, IteratorAggregate
 {
 	private $mailboxes;
 
