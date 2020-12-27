@@ -23,10 +23,6 @@ class MailboxList implements Countable, IteratorAggregate
 
 	public function add(Mailbox $mailbox): void
 	{
-		if ($this->contains($mailbox)) {
-			throw new InvalidArgumentException('Cannot add the same mailbox more than once.');
-		}
-
 		$this->mailboxes[] = $mailbox;
 	}
 
