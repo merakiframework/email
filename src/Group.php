@@ -5,17 +5,17 @@ namespace Meraki\Email;
 
 use Meraki\Email\Address;
 use Meraki\Email\DisplayName;
-use Meraki\Email\MailboxList;
+use Meraki\Email\GroupList;
 
 final class Group implements Address
 {
 	private $displayName;
-	private $mailboxList;
+	private $groupList;
 
-	public function __construct(DisplayName $displayName, MailboxList $mailboxList = null)
+	public function __construct(DisplayName $displayName, GroupList $groupList = null)
 	{
 		$this->displayName = $displayName;
-		$this->mailboxList = $mailboxList;
+		$this->groupList = $groupList;
 	}
 
 	public function getDisplayName(): ?DisplayName
@@ -23,19 +23,19 @@ final class Group implements Address
 		return $this->displayName;
 	}
 
-	public function getMailboxList(): ?MailboxList
+	public function groupList(): ?GroupList
 	{
-		return $this->mailboxList;
+		return $this->groupList;
 	}
 
 	public function equals(self $other): bool
 	{
 		if ($this->displayName->equals($other->displayName)) {
-			if ($this->mailboxList !== null && $other->mailboxList !== null) {
-				return $this->mailboxList->equals($other->mailboxList);
+			if ($this->groupList !== null && $other->groupList !== null) {
+				return $this->groupList->equals($other->groupList);
 			}
 
-			return $this->mailboxList === null && $other->mailboxList === null;
+			return $this->groupList === null && $other->groupList === null;
 		}
 
 		return false;
@@ -43,8 +43,8 @@ final class Group implements Address
 
 	public function __toString(): string
 	{
-		if ($this->mailboxList !== null) {
-			return sprintf('%s:%s;', $this->displayName, $this->mailboxList);
+		if ($this->groupList !== null) {
+			return sprintf('%s:%s;', $this->displayName, $this->groupList);
 		}
 		
 		return sprintf('%s:;', $this->displayName);

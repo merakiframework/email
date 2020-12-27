@@ -8,7 +8,7 @@ use Meraki\Email\Address;
 use Meraki\Email\Group;
 use Meraki\Email\DisplayName;
 use Meraki\Email\Mailbox;
-use Meraki\Email\MailboxList;
+use Meraki\Email\GroupList;
 use Countable;
 
 final class GroupTest extends AddressTest
@@ -33,7 +33,7 @@ final class GroupTest extends AddressTest
 	{
 		$group = new Group(new DisplayName('Automated System'));
 
-		$mailboxList = $group->getMailboxList();
+		$mailboxList = $group->groupList();
 
 		// a mailbox-list MUST have at least one mailbox, therefore, 
 		// no mailboxes mean no mailbox-list. Ergo, return null
@@ -45,10 +45,10 @@ final class GroupTest extends AddressTest
 	 */
 	public function mailboxes_can_be_provided_to_group_when_created(): void
 	{
-		$expectedMailboxList = new MailboxList(Mailbox::withoutDisplayName('test@example.com'));
+		$expectedMailboxList = new GroupList(Mailbox::withoutDisplayName('test@example.com'));
 		$group = new Group(new DisplayName('Test Group'), $expectedMailboxList);
 
-		$actualMailboxList = $group->getMailboxList();
+		$actualMailboxList = $group->groupList();
 
 		$this->assertSame($expectedMailboxList, $actualMailboxList);
 	}
@@ -69,7 +69,7 @@ final class GroupTest extends AddressTest
 	 */
 	public function two_groups_are_not_equal_if_display_names_are_different_but_mailbox_list_is_same(): void
 	{
-		$mailboxList = new MailboxList(Mailbox::withoutDisplayName('test@example.com'));
+		$mailboxList = new GroupList(Mailbox::withoutDisplayName('test@example.com'));
 		$group1 = new Group(new DisplayName('Automated System 1'), $mailboxList);
 		$group2 = new Group(new DisplayName('Automated System 2'), $mailboxList);
 
@@ -84,7 +84,7 @@ final class GroupTest extends AddressTest
 	public function two_groups_are_not_equal_if_there_are_mailboxes_in_one_but_not_the_other(): void
 	{
 		$displayName = new DisplayName('Automated System');
-		$mailboxList = new MailboxList(Mailbox::withoutDisplayName('test1@example.com'));
+		$mailboxList = new GroupList(Mailbox::withoutDisplayName('test1@example.com'));
 		$group1 = new Group($displayName, $mailboxList);
 		$group2 = new Group($displayName);
 
@@ -126,7 +126,7 @@ final class GroupTest extends AddressTest
 		$displayName = new DisplayName('IT Support Team');
 		$johnDoe = Mailbox::withDisplayName('John Doe', 'john.doe@example.com');
 		$janeDoe = Mailbox::withDisplayName('Jane Doe', 'jane.doe@example.com');
-		$group = new Group($displayName, new MailboxList($johnDoe, $janeDoe));
+		$group = new Group($displayName, new GroupList($johnDoe, $janeDoe));
 
 		$actual = (string) $group;
 
