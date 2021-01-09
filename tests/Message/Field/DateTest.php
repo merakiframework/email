@@ -74,18 +74,6 @@ final class DateTest extends FieldTest
 		$this->assertEquals(1, $occurrenceCount);
 	}
 
-	/**
-	 * @test
-	 */
-	public function can_get_as_field_line(): void
-	{
-		$dateField = $this->createField();
-
-		$fieldLine = (string) $dateField;
-
-		$this->assertEquals("Date: Thu, 01 Jan 1970 00:00:01 +0000\r\n", $fieldLine);
-	}
-
 	protected function createField(): HeaderField
 	{
 		return new DateField(new DateTime('@1'));

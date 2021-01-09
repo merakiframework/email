@@ -18,5 +18,18 @@ abstract class FieldTest extends TestCase
 		$this->assertInstanceOf(HeaderField::class, $field);
 	}
 
+	/**
+	 * @test
+	 */
+	public function can_get_as_field_line(): void
+	{
+		$field = $this->createField();
+		$expectedFieldLine = sprintf("%s: %s\r\n", $field->name(), $field->body());
+
+		$actualFieldLine = (string) $field;
+
+		$this->assertEquals($expectedFieldLine, $actualFieldLine);
+	}
+
 	abstract protected function createField(): HeaderField;
 }

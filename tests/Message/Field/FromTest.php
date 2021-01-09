@@ -79,19 +79,6 @@ final class FromTest extends FieldTest
 		$this->assertTrue($isRequired);
 	}
 
-	/**
-	 * @test
-	 */
-	public function can_get_as_field_line(): void
-	{
-		$field = $this->createField();
-		$expectedFieldLine = sprintf("%s: %s\r\n", $field->name(), $field->body());
-
-		$actualFieldLine = (string) $field;
-
-		$this->assertEquals($expectedFieldLine, $actualFieldLine);
-	}
-
 	protected function createField(): HeaderField
 	{
 		$mailbox = Mailbox::withDisplayName('Test Account', 'test@example.com');
